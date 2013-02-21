@@ -12,10 +12,7 @@ tri_location = defaultdict(list)
 class Node:
     def __init__(self,n):
         # Edges that have not been colored
-        self.uncolored = set()
-        # A dictionary from an edge, to a list of edges that complete a triangle
-        for tri in itertools.combinations(range(1,n+1), 2):
-            self.uncolored.add(tri)
+        self.uncolored = set(itertools.combinations(range(1,n+1),2))
         # Edges that have been colored red
         self.red = set()
         # Edges that have been colored blue
