@@ -33,16 +33,14 @@ class Node:
             for comp in self.conn_components:
                 if v in self.vertices(comp):
                     comp.add(edge)
-                    if comp not in meld:
-                        meld.append(comp)
+                    self.conn_components.remove(comp)
+                    meld.append(comp)
         if not meld:
             st = set()
             st.add(edge)
             self.conn_components.append(st)
-        elif len(meld) > 1:
-            new_comp = meld[0] | meld[1]
-            self.conn_components.remove(meld[0])
-            self.conn_components.remove(meld[1])
+        else:
+            new_comp = set.union(*meld)
             self.conn_components.append(new_comp)
         self.fringe.discard(edge)
         self.fringe.update(filter(lambda x: edge[0] in x or edge[1] in x, self.uncolored))
