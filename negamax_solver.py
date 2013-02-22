@@ -112,4 +112,3 @@ elif val == -1:
     print "2nd player has a winning strategy"
 else:
     print "Optimal play leads to draw"
-
